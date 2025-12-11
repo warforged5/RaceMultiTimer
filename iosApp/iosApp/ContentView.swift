@@ -5,7 +5,7 @@ import ComposeApp
 struct ContentView: View {
     var body: some View {
         ComposeView()
-            .ignoresSafeArea(.keyboard) // Compose has own keyboard handling
+            .ignoresSafeArea(.all) // Compose has own keyboard handling
     }
 }
 
