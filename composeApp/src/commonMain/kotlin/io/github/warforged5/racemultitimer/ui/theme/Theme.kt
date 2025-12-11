@@ -284,6 +284,120 @@ object MaterialYouPalettes {
         outline = Color(0xFF8D9287),
         outlineVariant = Color(0xFF43483F)
     )
+
+    // Amber - Warm, energetic, golden
+    val amberLight = AppColorScheme(
+        primary = Color(0xFF855400),
+        onPrimary = Color(0xFFFFFFFF),
+        primaryContainer = Color(0xFFFFDDB5),
+        onPrimaryContainer = Color(0xFF2A1700),
+        secondary = Color(0xFF6F5B40),
+        onSecondary = Color(0xFFFFFFFF),
+        secondaryContainer = Color(0xFFFBDEBC),
+        onSecondaryContainer = Color(0xFF271904),
+        tertiary = Color(0xFF51643F),
+        onTertiary = Color(0xFFFFFFFF),
+        tertiaryContainer = Color(0xFFD4EABB),
+        onTertiaryContainer = Color(0xFF102004),
+        error = Color(0xFF8C4A60),
+        onError = Color(0xFFFFFFFF),
+        errorContainer = Color(0xFFFFD9DE),
+        onErrorContainer = Color(0xFF3B071D),
+        surface = Color(0xFFFFF8F4),
+        onSurface = Color(0xFF1F1B16),
+        surfaceVariant = Color(0xFFF0E0CF),
+        onSurfaceVariant = Color(0xFF4F4539),
+        surfaceContainer = Color(0xFFFFFFFF),
+        surfaceContainerHigh = Color(0xFFFAF0E6),
+        surfaceContainerHighest = Color(0xFFF4EAE0),
+        outline = Color(0xFF817567),
+        outlineVariant = Color(0xFFD3C4B4)
+    )
+
+    val amberDark = AppColorScheme(
+        primary = Color(0xFFFFB958),
+        onPrimary = Color(0xFF462A00),
+        primaryContainer = Color(0xFF653E00),
+        onPrimaryContainer = Color(0xFFFFDDB5),
+        secondary = Color(0xFFDDC3A2),
+        onSecondary = Color(0xFF3E2E16),
+        secondaryContainer = Color(0xFF56442A),
+        onSecondaryContainer = Color(0xFFFBDEBC),
+        tertiary = Color(0xFFB8CEA1),
+        onTertiary = Color(0xFF243515),
+        tertiaryContainer = Color(0xFF3A4C29),
+        onTertiaryContainer = Color(0xFFD4EABB),
+        error = Color(0xFFFFB2BE),
+        onError = Color(0xFF561D32),
+        errorContainer = Color(0xFF723348),
+        onErrorContainer = Color(0xFFFFD9DE),
+        surface = Color(0xFF17130E),
+        onSurface = Color(0xFFEBE1D9),
+        surfaceVariant = Color(0xFF4F4539),
+        onSurfaceVariant = Color(0xFFD3C4B4),
+        surfaceContainer = Color(0xFF231F1A),
+        surfaceContainerHigh = Color(0xFF2E2924),
+        surfaceContainerHighest = Color(0xFF39342E),
+        outline = Color(0xFF9C8E80),
+        outlineVariant = Color(0xFF4F4539)
+    )
+
+    // Ocean - Cool, deep, calming blue
+    val oceanLight = AppColorScheme(
+        primary = Color(0xFF00629E),
+        onPrimary = Color(0xFFFFFFFF),
+        primaryContainer = Color(0xFFCFE5FF),
+        onPrimaryContainer = Color(0xFF001D34),
+        secondary = Color(0xFF516379),
+        onSecondary = Color(0xFFFFFFFF),
+        secondaryContainer = Color(0xFFD4E7FF),
+        onSecondaryContainer = Color(0xFF0C1F31),
+        tertiary = Color(0xFF675A78),
+        onTertiary = Color(0xFFFFFFFF),
+        tertiaryContainer = Color(0xFFEEDDFF),
+        onTertiaryContainer = Color(0xFF221732),
+        error = Color(0xFF8C4A60),
+        onError = Color(0xFFFFFFFF),
+        errorContainer = Color(0xFFFFD9DE),
+        onErrorContainer = Color(0xFF3B071D),
+        surface = Color(0xFFF7F9FF),
+        onSurface = Color(0xFF181C22),
+        surfaceVariant = Color(0xFFDEE3EB),
+        onSurfaceVariant = Color(0xFF42474E),
+        surfaceContainer = Color(0xFFFFFFFF),
+        surfaceContainerHigh = Color(0xFFEEF3FA),
+        surfaceContainerHighest = Color(0xFFE8EDF4),
+        outline = Color(0xFF72777F),
+        outlineVariant = Color(0xFFC2C7CF)
+    )
+
+    val oceanDark = AppColorScheme(
+        primary = Color(0xFF99CBFF),
+        onPrimary = Color(0xFF003355),
+        primaryContainer = Color(0xFF004A79),
+        onPrimaryContainer = Color(0xFFCFE5FF),
+        secondary = Color(0xFFB8CBE2),
+        onSecondary = Color(0xFF233447),
+        secondaryContainer = Color(0xFF3A4B5F),
+        onSecondaryContainer = Color(0xFFD4E7FF),
+        tertiary = Color(0xFFD4BEE6),
+        onTertiary = Color(0xFF382C48),
+        tertiaryContainer = Color(0xFF4F4260),
+        onTertiaryContainer = Color(0xFFEEDDFF),
+        error = Color(0xFFFFB2BE),
+        onError = Color(0xFF561D32),
+        errorContainer = Color(0xFF723348),
+        onErrorContainer = Color(0xFFFFD9DE),
+        surface = Color(0xFF101419),
+        onSurface = Color(0xFFE0E2E9),
+        surfaceVariant = Color(0xFF42474E),
+        onSurfaceVariant = Color(0xFFC2C7CF),
+        surfaceContainer = Color(0xFF1C2026),
+        surfaceContainerHigh = Color(0xFF262A31),
+        surfaceContainerHighest = Color(0xFF31353C),
+        outline = Color(0xFF8C9199),
+        outlineVariant = Color(0xFF42474E)
+    )
 }
 
 /**
@@ -389,6 +503,8 @@ fun RaceTimerTheme(
         "teal" -> if (isDark) MaterialYouPalettes.tealDark else MaterialYouPalettes.tealLight
         "rose" -> if (isDark) MaterialYouPalettes.roseDark else MaterialYouPalettes.roseLight
         "sage" -> if (isDark) MaterialYouPalettes.sageDark else MaterialYouPalettes.sageLight
+        "amber" -> if (isDark) MaterialYouPalettes.amberDark else MaterialYouPalettes.amberLight
+        "ocean" -> if (isDark) MaterialYouPalettes.oceanDark else MaterialYouPalettes.oceanLight
         else -> if (isDark) MaterialYouPalettes.indigoDark else MaterialYouPalettes.indigoLight
     }
 

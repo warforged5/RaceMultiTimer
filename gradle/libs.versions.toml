@@ -11,6 +11,8 @@ androidx-lifecycle = "2.9.5"
 androidx-testExt = "1.3.0"
 androidx-datastore = "1.1.1"
 composeMultiplatform = "1.9.1"
+datastore = "1.2.0"
+datastorePreferences = "1.2.0"
 junit = "4.13.2"
 kotlin = "2.2.20"
 kotlinxCoroutinesCore = "1.10.2"
@@ -21,7 +23,9 @@ materialIconsExtended = "1.7.8"
 materialIconsExtendedVersion = "1.7.7"
 
 [libraries]
+androidx-datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "androidx-datastore" }
+androidx-datastore-preferences-v120 = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 androidx-material = { module = "androidx.compose.material:material", version.ref = "material" }
 androidx-material-icons-core = { module = "androidx.compose.material:material-icons-core", version.ref = "materialIconsExtended" }
 androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIconsExtended" }
@@ -46,3 +50,4 @@ androidLibrary = { id = "com.android.library", version.ref = "agp" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

@@ -81,34 +81,53 @@ fun ThemeSelectorDialog(
                     color = MaterialTheme.colorScheme.primary
                 )
 
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    PaletteOption(
-                        name = "Indigo",
-                        color = Color(0xFF5A5D95),
-                        isSelected = currentPalette == "indigo",
-                        onClick = { onPaletteSelected("indigo") }
-                    )
-                    PaletteOption(
-                        name = "Teal",
-                        color = Color(0xFF006A69),
-                        isSelected = currentPalette == "teal",
-                        onClick = { onPaletteSelected("teal") }
-                    )
-                    PaletteOption(
-                        name = "Rose",
-                        color = Color(0xFF9C4057),
-                        isSelected = currentPalette == "rose",
-                        onClick = { onPaletteSelected("rose") }
-                    )
-                    PaletteOption(
-                        name = "Sage",
-                        color = Color(0xFF4B6546),
-                        isSelected = currentPalette == "sage",
-                        onClick = { onPaletteSelected("sage") }
-                    )
+                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        PaletteOption(
+                            name = "Indigo",
+                            color = Color(0xFF5A5D95),
+                            isSelected = currentPalette == "indigo",
+                            onClick = { onPaletteSelected("indigo") }
+                        )
+                        PaletteOption(
+                            name = "Teal",
+                            color = Color(0xFF006A69),
+                            isSelected = currentPalette == "teal",
+                            onClick = { onPaletteSelected("teal") }
+                        )
+                        PaletteOption(
+                            name = "Rose",
+                            color = Color(0xFF9C4057),
+                            isSelected = currentPalette == "rose",
+                            onClick = { onPaletteSelected("rose") }
+                        )
+                    }
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(12.dp),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        PaletteOption(
+                            name = "Sage",
+                            color = Color(0xFF4B6546),
+                            isSelected = currentPalette == "sage",
+                            onClick = { onPaletteSelected("sage") }
+                        )
+                        PaletteOption(
+                            name = "Amber",
+                            color = Color(0xFF855400),
+                            isSelected = currentPalette == "amber",
+                            onClick = { onPaletteSelected("amber") }
+                        )
+                        PaletteOption(
+                            name = "Ocean",
+                            color = Color(0xFF00629E),
+                            isSelected = currentPalette == "ocean",
+                            onClick = { onPaletteSelected("ocean") }
+                        )
+                    }
                 }
             }
         },

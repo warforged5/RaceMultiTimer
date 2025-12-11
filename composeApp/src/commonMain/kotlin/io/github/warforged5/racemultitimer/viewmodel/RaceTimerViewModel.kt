@@ -2,6 +2,7 @@ package io.github.warforged5.racemultitimer.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import io.github.warforged5.racemultitimer.data.SettingsRepository
 import io.github.warforged5.racemultitimer.domain.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -100,7 +101,9 @@ enum class DialogType {
     MANAGE_MARKERS
 }
 
-class RaceTimerViewModel : ViewModel() {
+class RaceTimerViewModel(
+    private val settingsRepository: SettingsRepository? = null
+) : ViewModel() {
 
     private val _state = MutableStateFlow(RaceTimerState())
     val state: StateFlow<RaceTimerState> = _state.asStateFlow()
@@ -111,7 +114,46 @@ class RaceTimerViewModel : ViewModel() {
 
     init {
         startHighFrequencyTimer()
+        loadSettings()
     }
+
+    /**
+     * Load persisted settings from DataStore
+     */
+    private fun loadSettings() {
+        settingsRepository?.let { repo ->
+            viewModelScope.launch {
+                // Combine all settings flows
+                combine(
+                    repo.theme,
+                    repo.colorPalette,
+                    repo.showLapsInCards,
+                    repo.customRestPresets,
+                    repo.lanePresets
+                ) { theme, palette, showLaps, restPresets, lanePresets ->
+                    SettingsData(theme, palette, showLaps, restPresets, lanePresets)
+                }.collect { settings ->
+                    _state.update { currentState ->
+                        currentState.copy(
+                            theme = settings.theme,
+                            colorPalette = settings.colorPalette,
+                            showLapsInCards = settings.showLapsInCards,
+                            customRestPresets = settings.customRestPresets,
+                            presets = settings.lanePresets
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    private data class SettingsData(
+        val theme: AppTheme,
+        val colorPalette: String,
+        val showLapsInCards: Boolean,
+        val customRestPresets: List<Int>,
+        val lanePresets: List<TimerPreset>
+    )
 
     /**
      * High-frequency timer that updates every 10ms for smooth display
@@ -192,6 +234,9 @@ class RaceTimerViewModel : ViewModel() {
 
     private fun toggleShowLaps() {
         _state.update { it.copy(showLapsInCards = !it.showLapsInCards) }
+        viewModelScope.launch {
+            settingsRepository?.setShowLapsInCards(_state.value.showLapsInCards)
+        }
     }
 
     private fun addLane() {
@@ -438,10 +483,16 @@ class RaceTimerViewModel : ViewModel() {
                 state.copy(customRestPresets = (state.customRestPresets + seconds).sorted())
             }
         }
+        viewModelScope.launch {
+            settingsRepository?.setCustomRestPresets(_state.value.customRestPresets)
+        }
     }
 
     private fun removeCustomRestPreset(seconds: Int) {
         _state.update { it.copy(customRestPresets = it.customRestPresets.filter { s -> s != seconds }) }
+        viewModelScope.launch {
+            settingsRepository?.setCustomRestPresets(_state.value.customRestPresets)
+        }
     }
 
     private fun savePreset(name: String) {
@@ -456,6 +507,9 @@ class RaceTimerViewModel : ViewModel() {
         )
 
         _state.update { it.copy(presets = it.presets + preset, showSavePresetDialog = false) }
+        viewModelScope.launch {
+            settingsRepository?.setLanePresets(_state.value.presets)
+        }
     }
 
     private fun loadPreset(presetId: String) {
@@ -475,14 +529,23 @@ class RaceTimerViewModel : ViewModel() {
 
     private fun deletePreset(presetId: String) {
         _state.update { it.copy(presets = it.presets.filter { preset -> preset.id != presetId }) }
+        viewModelScope.launch {
+            settingsRepository?.setLanePresets(_state.value.presets)
+        }
     }
 
     private fun setTheme(theme: AppTheme) {
         _state.update { it.copy(theme = theme, showThemeSelector = false) }
+        viewModelScope.launch {
+            settingsRepository?.setTheme(theme)
+        }
     }
 
     private fun setColorPalette(palette: String) {
         _state.update { it.copy(colorPalette = palette) }
+        viewModelScope.launch {
+            settingsRepository?.setColorPalette(palette)
+        }
     }
 
     private fun expandLane(laneId: String?) {
